@@ -1,7 +1,7 @@
 module cofre (
 	input logic clk, //ENTRADA DE CLOCK DA PLACA
 	input logic rstn, // BOTÃO DE RESET (KEY[0]) "n" depois de "rst" significa que ele é tido como ativo quando em 0.
-	input logic [3:0] btn, //BOTÕES DE CONTROLE DO SISTEMA (KEY[1]..KEY[3])
+	input logic [3:0] btn, //BOTÕES DE CONTROLE DO SISTEMA (KEY[0]..KEY[3])
 	output logic unlocked, //OUTPUT EM RELAÇÃO AO SUCESSO EM DESBLOQUEAR O COFRE
 
     // OUTPUTS PARA OS 5 DISPLAYS DE 7 SEGMENTOS
@@ -10,7 +10,11 @@ module cofre (
     output logic [6:0] hex3, // OUTPUT FEEDBACK DO PRIMEIRO DÍGITO DA SENHA
     output logic [6:0] hex2, // OUTPUT FEEDBACK DO SEGUNDO DÍGITO DA SENHA
     output logic [6:0] hex1, // OUTPUT FEEDBACK DO TERCEIRO DÍGITO DA SENHA
-    output logic [6:0] hex0 // OUTPUT FEEDBACK DO QUARTO DÍGITO DA SENHA
+    output logic [6:0] hex0, // OUTPUT FEEDBACK DO QUARTO DÍGITO DA SENHA
+
+    output logic [8:0] LEDG,
+    output logic [17:0] LEDR
+
 );
 integer x_reset; // declaração de x como um inteiro para ser usado no for do reset
 integer x_compare; // x variável para comparação
@@ -30,8 +34,8 @@ localparam logic [3:0] senha_cofre [0:3] = '{4'b0011, 4'b0101, 4'b0000, 4'b1000}
 // ========================= SENHA DO COFRE =============================
 
 // CONTADOR
-localparam integer tempo_desbloqueado = 250_000_000; // TEMPO DE ESPERA APÓS O SISTEMA ENTRAR NO ESTADO DE DESBLOQUEIO COM SUCESSO ANTES DE RESETAR (250Mhz)
-localparam integer tempo_erro = 150_000_000; // TEMPO DE ESPERA APÓS O SISTEMA ENTRAR NO ESTADO DE SENHA INCORRETA ANTES DE RESETAR (150Mhz)
+localparam integer tempo_desbloqueado = 250_000_000; // TEMPO DE ESPERA APÓS O SISTEMA ENTRAR NO ESTADO DE DESBLOQUEIO COM SUCESSO ANTES DE RESETAR (250M ciclos de clock)
+localparam integer tempo_erro = 150_000_000; // TEMPO DE ESPERA APÓS O SISTEMA ENTRAR NO ESTADO DE SENHA INCORRETA ANTES DE RESETAR (150M ciclos de clock)
 
 
 logic senha_ok;
@@ -48,7 +52,7 @@ assign reset_ativo = ~rstn; // NEGAÇÃO DO RESET, PARA SIMBOLIZAR RESET ATIVO
 assign posicao_botao = ~btn; //INVERSÃO DO SINAL DAS ENTRADAS BOTÕES POR ELES SEREM DE NÍVEL BAIXO, TAL QUAL O DO RESET
 
 // DISPLAYS HEX DA PLACA RECEBENDO O DECODIFICADOR DE BINÁRIO PARA SEGMENTOS
-assign hex4 = decodificado({2'b00, digito_atual}); // CONCATENAÇÃO AQUI SERVE PARA COMPLETAR COM ZEROS OS OUTROS DOIS MAIS À ESQUERDA BITS QUE A FUNÇÃO ESPERA E PEGAR OS DOIS ÚLTIMOS DE DIGITO_ATUAL
+assign hex4 = decodificado({2'b00, digito_atual} + 4'b0001); // CONCATENAÇÃO AQUI SERVE PARA COMPLETAR COM ZEROS OS OUTROS DOIS MAIS À ESQUERDA BITS QUE A FUNÇÃO ESPERA E PEGAR OS DOIS ÚLTIMOS DE DIGITO_ATUAL
 assign hex3 = decodificado(inseridos[0]);
 assign hex2 = decodificado(inseridos[1]);
 assign hex1 = decodificado(inseridos[2]);
@@ -70,12 +74,11 @@ always_ff @(posedge clk or negedge rstn) begin
     */
 
     if (reset_ativo) begin
-        antes_botao <= 4'b0000;  // RESETA A VARIÁVEL EM CASO DE RESET
+        antes_botao <= 4'b1111;
     end
     else begin
         antes_botao <= posicao_botao; /* 
-        CASO CONTRÁRIO, GUARDA O SINAL DE PRESSIONAMENTO DO BOTÃO ATUAL NA MEMÓRIA, ESTRUTURA DE REGISTRADOR.
-*/
+        CASO CONTRÁRIO, GUARDA O SINAL DE PRESSIONAMENTO DO BOTÃO ATUAL NA MEMÓRIA, ESTRUTURA DE REGISTRADOR. */
     end
 end
 
@@ -186,19 +189,33 @@ function automatic logic [6:0] decodificado( //OS 7 BITS QUE REPRESENTAM OS 7 SE
 );
     begin
         case (valor)
-            4'b0000: decodificado = 7'b0000001;
-            4'b0001: decodificado = 7'b1001111;
-            4'b0010: decodificado = 7'b0010010;
-            4'b0011: decodificado = 7'b0000110;
-            4'b0100: decodificado = 7'b1001100;
-            4'b0101: decodificado = 7'b0100100;
-            4'b0110: decodificado = 7'b0100000;
-            4'b0111: decodificado = 7'b0001111;
-            4'b1000: decodificado = 7'b0000000;
-            4'b1001: decodificado = 7'b0000100;
+            4'b0000: decodificado = 7'b1000000;
+            4'b0001: decodificado = 7'b1111001; 
+            4'b0010: decodificado = 7'b0100100; 
+            4'b0011: decodificado = 7'b0110000; 
+            4'b0100: decodificado = 7'b0011001; 
+            4'b0101: decodificado = 7'b0010010; 
+            4'b0110: decodificado = 7'b0000010; 
+            4'b0111: decodificado = 7'b1111000; 
+            4'b1000: decodificado = 7'b0000000; 
+            4'b1001: decodificado = 7'b0010000; 
             default: decodificado = 7'b1111111;
         endcase
     end
 endfunction
 
+always_comb begin
+    if (estado_atual == DESBLOQUEADO) begin // QUANDO DESBLOQUEADO, LEDS VERDES ACENDEM E VERMELHOS FICAM EM ZERO
+        LEDG = 9'b111111111;
+        LEDR = 18'b000000000000000000;
+    end
+    else if (estado_atual == ERRO) begin // QUANDO EM ESTADO DE ERRO, LEDS VERMELHOS ACENDEM E VERDES FICAM EM ZERO
+        LEDG = 9'b000000000;
+        LEDR = 18'b111111111111111111;
+    end
+    else begin // QUANDO EM ESTADO DE INPUT, TODOS OS LEDS FICAM EM ZERO
+        LEDG = 9'b000000000;
+        LEDR = 18'b000000000000000000;
+    end
+end
 endmodule
