@@ -27,8 +27,12 @@ Ela é definida como parâmetro do módulo cofre:
 
 ### 1.2 Uso dos botões
 
-+--------+-------------------------------------------------------------------------------------------------------------------+--+--+--+
-|  Botão |                                                       Função                                                      |  |  |  |
+| metade | o que é | onde mora |
+|---|---|---|
+| **o cérebro** | o agente que você construiu, que escolhe as músicas | `backend/aula_aluna.ipynb` |
+| **o rosto** | o site bonito onde a pessoa digita e vê a playlist | `frontend/` |
+
+|  Botão |  Função                                                      |  |  |  |
 +--------+-------------------------------------------------------------------------------------------------------------------+--+--+--+
 | KEY[3] | Seta para a esquerda: decrementa o dígito ativo                                                                   |  |  |  |
 +--------+-------------------------------------------------------------------------------------------------------------------+--+--+--+
