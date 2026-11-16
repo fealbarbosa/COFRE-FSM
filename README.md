@@ -27,21 +27,12 @@ Ela é definida como parâmetro do módulo cofre:
 
 ### 1.2 Uso dos botões
 
-| metade | o que é | onde mora |
+| Botão | Função | 
 |---|---|---|
-| **o cérebro** | o agente que você construiu, que escolhe as músicas | `backend/aula_aluna.ipynb` |
-| **o rosto** | o site bonito onde a pessoa digita e vê a playlist | `frontend/` |
-
-|  Botão |  Função                                                      |  |  |  |
-+--------+-------------------------------------------------------------------------------------------------------------------+--+--+--+
-| KEY[3] | Seta para a esquerda: decrementa o dígito ativo                                                                   |  |  |  |
-+--------+-------------------------------------------------------------------------------------------------------------------+--+--+--+
-| KEY[2] | Seta para a direita: incrementa o dígito ativo                                                                    |  |  |  |
-+--------+-------------------------------------------------------------------------------------------------------------------+--+--+--+
-| KEY[1] | Confirmação: fixa o dígito ativo e avança para o seguinte. No quarto dígito, encerra a entrada e verifica a senha |  |  |  |
-+--------+-------------------------------------------------------------------------------------------------------------------+--+--+--+
-| KEY[0] | Reset: volta ao estado inicial (primeiro dígito ativo, displays em 0, LEDs apagados)                              |  |  |  |
-+--------+-------------------------------------------------------------------------------------------------------------------+--+--+--+
+| KEY[3] |  Seta para a esquerda: decrementa o dígito ativo   | 
+| KEY[2] |  Seta para a direita: incrementa o dígito ativo   | 
+| KEY[1] | Confirmação: fixa o dígito ativo e avança para o seguinte. No quarto dígito, encerra a entrada e verifica a senha | 
+| KEY[0] |  Reset: volta ao estado inicial (primeiro dígito ativo, displays em 0, LEDs apagados)  | 
 
 - A navegação é sempre para frente: não há retorno a um dígito já confirmado. Para recomeçar, usa-se o reset (KEY[0]).
 
