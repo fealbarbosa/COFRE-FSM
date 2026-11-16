@@ -271,22 +271,22 @@ module cofre (
 
     bcd_to_7segment_anodo decode0 (
         .bcd(digitos[0]),
-        .seg(hex[0])
+        .seg(hex[3])
     );
 
     bcd_to_7segment_anodo decode1 (
         .bcd(digitos[1]),
-        .seg(hex[1])
+        .seg(hex[2])
     );
 
     bcd_to_7segment_anodo decode2 (
         .bcd(digitos[2]),
-        .seg(hex[2])
+        .seg(hex[1])
     );
 
     bcd_to_7segment_anodo decode3 (
         .bcd(digitos[3]),
-        .seg(hex[3])
+        .seg(hex[0])
     );
 
     bcd_to_7segment_anodo decode4 (
