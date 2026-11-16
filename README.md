@@ -46,13 +46,10 @@ Ela é definida como parâmetro do módulo cofre:
 
 Após a confirmação do quarto dígito (KEY[1] em S3), o sistema compara os dígitos inseridos com senha_cofre.
 
-+-----------------+--------------+---------------------------------------------+---------+--+
-|    Resultado    |    Estado    |                   Feedback                  | Duração |  |
-+-----------------+--------------+---------------------------------------------+---------+--+
-| Senha Correta   | DESBLOQUEADO | Todos os LEDs verdes (LEDG[8:0]) acesos     | 5s      |  |
-+-----------------+--------------+---------------------------------------------+---------+--+
-| Senha Incorreta | SENHA_ERRADA | Todos os LEDs vermelhos (LEDR[17:0]) acesos | 3s      |  |
-+-----------------+--------------+---------------------------------------------+---------+--+
+| Resultado | Estado | Feedback | Duração |
+| --- | --- | --- | --- |
+| Senha Correta | DESBLOQUEADO | Todos os LEDs verdes (LEDG[8:0]) acesos | 5s |
+| Senha Incorreta | SENHA_ERRADA | Todos os LEDs vermelhos (LEDR[17:0]) acesos | 3s |
 
 Ao término do intervalo, o sistema retorna automaticamente a S0, os displays voltam a exibir 0 e o primeiro dígito torna-se novamente o dígito ativo.
 
