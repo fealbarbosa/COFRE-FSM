@@ -28,6 +28,7 @@ Ela é definida como parâmetro do módulo cofre:
 ### 1.2 Uso dos botões
 
 | Botão | Função |
+| :--- | :---: | ---: |
 | KEY[3] | Seta para a esquerda: decrementa o dígito ativo |
 | KEY[2] | Seta para a direita: incrementa o dígito ativo |
 | KEY[1] | Confirmação: fixa o dígito ativo e avança para o seguinte. No quarto dígito, encerra a entrada e verifica a senha |
@@ -46,6 +47,7 @@ Ela é definida como parâmetro do módulo cofre:
 Após a confirmação do quarto dígito (KEY[1] em S3), o sistema compara os dígitos inseridos com senha_cofre.
 
 | Resultado | Estado | Feedback | Duração |
+| :--- | :---: | ---: |
 | Senha Correta | DESBLOQUEADO | Todos os LEDs verdes (LEDG[8:0]) acesos | 5s |
 | Senha Incorreta | SENHA_ERRADA | Todos os LEDs vermelhos (LEDR[17:0]) acesos | 3s |
 
