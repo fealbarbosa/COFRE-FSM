@@ -12,3 +12,11 @@ Este projeto prevê os seguintes requisitos para sua implementação:
 - Os quatro push buttons da placa (KEY[3] — KEY[0]) devem ser implementados no sistema de acordo com as orientações presentes no [website de orientações do projeto da disciplina](https://victormedeiros.notion.site/sd-projects-specs).
 
 ### 1.1 Senha e limites
+
+A senha é 3518.
+
+Ela é definida como parâmetro do módulo cofre:
+
+```localparam logic [3:0] senha_cofre [0:3] = '{4'b0011, 4'b0101, 4'b0001, 4'b1000}; // 3, 5, 1, 8```
+
+Cada dígito é limitado ao intervalo de 0 a 9 por meio de wrap-around explícito: ao chegar no 9 e seguir para a direita, volta para o 0; ao chegar no 0 e seguir para a esquerda, vai para o 9.
