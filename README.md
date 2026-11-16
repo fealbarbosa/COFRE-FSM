@@ -56,6 +56,13 @@ Ao término do intervalo, o sistema retorna automaticamente a S0, os displays vo
 ### 2. Diagrama de Estados
 
 
+![Texto Alternativo](link-da-imagem.png)
+
+ou 
+
+<img src="link-da-imagem.png" alt="Texto Alternativo" width="400">
+
+
 ### 3. Simulação e diagramas de tempo (waveforms)
 
 
