@@ -56,11 +56,8 @@ Ao término do intervalo, o sistema retorna automaticamente a S0, os displays vo
 ### 2. Diagrama de Estados
 
 
-![Texto Alternativo](link-da-imagem.png)
+<img width="5175" height="4466" alt="Diagrama da Máquina de Estados(2)" src="https://github.com/user-attachments/assets/0994616b-6b34-421e-a20b-e57e40307319" />
 
-ou 
-
-<img src="link-da-imagem.png" alt="Texto Alternativo" width="400">
 
 
 ### 3. Simulação e diagramas de tempo (waveforms)
