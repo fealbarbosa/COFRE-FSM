@@ -53,7 +53,7 @@ Após a confirmação do quarto dígito (KEY[1] em S3), o sistema compara os dí
 
 Ao término do intervalo, o sistema retorna automaticamente a S0, os displays voltam a exibir 0 e o primeiro dígito torna-se novamente o dígito ativo.
 
-### 2. Diagrama de Estados
+### 2. Diagrama de Máquina de Estados
 
 
 <img width="5175" height="4466" alt="Diagrama da Máquina de Estados(2)" src="https://github.com/user-attachments/assets/0994616b-6b34-421e-a20b-e57e40307319" />
