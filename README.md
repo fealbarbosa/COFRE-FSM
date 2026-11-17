@@ -68,4 +68,5 @@ Ao término do intervalo, o sistema retorna automaticamente a S0, os displays vo
 - Depois de confirmar um dígito (KEY[1]), não é possível voltar a ele para corrigir o valor. Para refazer a entrada, é preciso usar o reset (KEY[0]) e começar do primeiro dígito.
 - Se dois botões forem pressionados no mesmo ciclo, KEY2 tem prioridade sobre KEY3, e KEY1 não confirma.
 - No caso em que apertar o reset ao mesmo tempo que outra KEY, dará erro.
+- Ao pressionar o botão "reset" durante o acionamento dos LEDS (verdes ou vermelhos), o tempo de espera (5 segundos para verdes e 3 segundos para vermelhos) é ignorado e a máquina retorna ao estado inicial imediatamente.
 
