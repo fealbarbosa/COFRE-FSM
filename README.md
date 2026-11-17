@@ -63,7 +63,7 @@ Ao término do intervalo, o sistema retorna automaticamente a S0, os displays vo
 ### 3. Simulação e diagramas de tempo (waveforms)
 
 
-### 4. Known issues
+### 4. Known issues (Bugs conhecidos)
 
 - Depois de confirmar um dígito (KEY[1]), não é possível voltar a ele para corrigir o valor. Para refazer a entrada, é preciso usar o reset (KEY[0]) e começar do primeiro dígito.
 - Se dois botões forem pressionados no mesmo ciclo, KEY2 tem prioridade sobre KEY3, e KEY1 não confirma.
