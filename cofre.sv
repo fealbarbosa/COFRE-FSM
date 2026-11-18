@@ -236,7 +236,7 @@ module cofre (
             end
 
             DESBLOQUEADO: begin
-                leds_verdes = 8'b111111111;
+                leds_verdes = 9'b111111111;
                 if (temporizador == 0) begin
                     proximo_estado = S0;
                 end
