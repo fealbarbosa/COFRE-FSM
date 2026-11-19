@@ -62,6 +62,13 @@ Ao término do intervalo, o sistema retorna automaticamente a S0, os displays vo
 
 ### 3. Simulação e diagramas de tempo (waveforms)
 
+### 3.1 Diagrama de tempo
+
+
+### 3.2 Log da simulação
+
+<img width="550" height="1306" alt="Sem título(2)" src="https://github.com/user-attachments/assets/d4c4501f-21bc-491f-9b2a-c973c24d9307" />
+
 
 ### 4. Known issues (Bugs conhecidos)
 
