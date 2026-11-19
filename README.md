@@ -64,6 +64,14 @@ Ao término do intervalo, o sistema retorna automaticamente a S0, os displays vo
 
 ### 3.1 Diagrama de tempo
 
+### Parte 1:
+
+<img width="1496" height="515" alt="image" src="https://github.com/user-attachments/assets/b8ab1394-1d0f-456f-be3b-540ae92930bb" />
+
+### Parte 2:
+
+<img width="1495" height="516" alt="image" src="https://github.com/user-attachments/assets/292b21c4-551f-4598-8354-ada42f82e201" />
+
 
 ### 3.2 Log da simulação
 
